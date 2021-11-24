@@ -12,17 +12,11 @@ package be.heh.ecproject.product.adapter.out.persistence;
 public class Product {
 
     @Getter
-    private final Long idPerson;
+    private final Long id;
     @Getter
-    private final String firstName;
+    private final String productName;
     @Getter
-    private final String lastName;
+    private final int price;
     @Getter
-    private final int age;
-
-    public int getBirthYear() {
-        int annee = LocalDate.now().getYear() - this.age;
-        return annee;
+    private final String category;
     }
-
-}

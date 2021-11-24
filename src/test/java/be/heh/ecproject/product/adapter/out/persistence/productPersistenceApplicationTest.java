@@ -45,13 +45,13 @@ public class productPersistenceApplicationTest {
     @Sql({"createTable.sql","PersonPersistenceAdapterTests.sql"})
     void getAllPersons(){
         conteneur.start();
-        personPersistenceAdapter = new PersonPersistenceAdapter(personRepository);
+        productPersistenceAdapter = new ProductPersistenceAdapter(productRepository);
         Map<String, Object> map = new HashMap<>();
         ArrayList<Product> prod;
 
-        map = productPersistenceAdapter.getPersons();
+        map = productPersistenceAdapter.getProduct();
 
-        pers = (ArrayList<Person>)map.get("personnes");
+        prod = (ArrayList<Product>)map.get("personnes");
 
         System.out.println(prod.get(1).getFirstName());
 
