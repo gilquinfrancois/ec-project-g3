@@ -1,38 +1,38 @@
 package be.heh.ecproject.product.adapter.out.persistence;
-        import org.junit.ClassRule;
-        import org.junit.jupiter.api.Test;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-        import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-        import org.springframework.context.annotation.Import;
-        import org.springframework.test.context.jdbc.Sql;
-        import org.testcontainers.containers.GenericContainer;
-        import org.testcontainers.containers.PostgreSQLContainer;
-        import org.testcontainers.containers.output.Slf4jLogConsumer;
-        import org.testcontainers.junit.jupiter.Container;
-        import org.testcontainers.junit.jupiter.Testcontainers;
-        import org.testcontainers.utility.DockerImageName;
+import org.junit.ClassRule;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.jdbc.Sql;
+import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.containers.output.Slf4jLogConsumer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 
-        import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-        import java.util.ArrayList;
-        import java.util.HashMap;
-        import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @Testcontainers
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import({productPersistenceApplication.class})
+@Import({productPersistenceAdapter.class})
 public class productPersistenceApplicationTest {
     @Autowired
     private ProductRepository productRepository;
     //@Autowired
     //private PersonPersistenceAdapter personPersistenceAdapter;
-    private ProductPersistenceAdapter productPersistenceAdapter;
+    private productPersistenceAdapter productPersistenceAdapter;
 
-    /*@Container
+    @Container
     public GenericContainer postgres = new GenericContainer(DockerImageName.parse("postgres:13"))
-            .withExposedPorts(5432,5432).withEnv("POSTGRES_PASSWORD","root");*/
+            .withExposedPorts(5432,5432).withEnv("POSTGRES_PASSWORD","root");
 
     @ClassRule
     @Container
@@ -42,22 +42,22 @@ public class productPersistenceApplicationTest {
             withUsername("postgres");
 
     @Test
-    @Sql({"createTable.sql","PersonPersistenceAdapterTests.sql"})
-    void getAllPersons(){
+    @Sql({"createTable.sql","ProductPersistenceTest.sql"})
+    void getAllProducts(){
         conteneur.start();
-        productPersistenceAdapter = new ProductPersistenceAdapter(productRepository);
+        productPersistenceAdapter = new productPersistenceAdapter(productRepository);
         Map<String, Object> map = new HashMap<>();
         ArrayList<Product> prod;
 
         map = productPersistenceAdapter.getProduct();
 
-        prod = (ArrayList<Product>)map.get("personnes");
+        prod = (ArrayList<Product>)map.get("products");
 
-        System.out.println(prod.get(1).getFirstName());
+        System.out.println(prod.get(1).getProductName());
 
-        assertEquals("tata1",prod.get(1).getFirstName());
-        assertEquals("tutu1",prod.get(1).getLastName());
-        assertEquals(21,prod.get(1).getAge());
+        assertEquals("pain",prod.get(1).getProductName());
+        assertEquals("feculents",prod.get(1).getCategory());
+        assertEquals(2.5,prod.get(1).getPrice());
 
     }
 }

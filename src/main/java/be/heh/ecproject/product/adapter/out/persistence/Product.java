@@ -1,12 +1,13 @@
 package be.heh.ecproject.product.adapter.out.persistence;
-        import lombok.Data;
-        import lombok.Getter;
-        import lombok.RequiredArgsConstructor;
 
-        import java.time.Instant;
-        import java.time.LocalDate;
-        import java.util.Date;
-        import java.util.UUID;
+import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 public class Product {
@@ -19,4 +20,6 @@ public class Product {
     private final int price;
     @Getter
     private final String category;
-    }
+    @Getter
+    private final String description;
+}

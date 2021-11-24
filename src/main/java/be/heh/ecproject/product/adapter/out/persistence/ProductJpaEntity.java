@@ -1,11 +1,12 @@
 package be.heh.ecproject.product.adapter.out.persistence;
-        import lombok.Data;
 
-        import javax.persistence.*;
-        import java.util.UUID;
+import lombok.Data;
+
+import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
-@Table(name = "productName")
+@Table(name = "products")
 @Data
 public class ProductJpaEntity {
     @Id
@@ -14,11 +15,14 @@ public class ProductJpaEntity {
     private Long id;
 
     @Column(name = "price")
-    private String price;
+    private int price;
 
     @Column(name = "category")
     private String category;
 
     @Column(name = "productName")
     private String productName;
+
+    @Column(name = "description")
+    private String description;
 }

@@ -1,13 +1,15 @@
 package be.heh.ecproject.product.adapter.out.persistence;
-        import lombok.RequiredArgsConstructor;
 
-        import java.util.ArrayList;
-        import java.util.HashMap;
-        import java.util.List;
-        import java.util.Map;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
-public class ProductPersistenceAdapter implements AllProductUseCase {
+public class productPersistenceAdapter implements AllProductUseCase{
 
     private final ProductRepository productRepository;
 
@@ -19,10 +21,10 @@ public class ProductPersistenceAdapter implements AllProductUseCase {
         Map<String,Object> mapProd = new HashMap<>();
 
         for (ProductJpaEntity prod: productJpaList) {
-            productList.add(new Product(prod.id(),prod.productName(),prod.price(),prod.category()));
+            productList.add(new Product(prod.getId(),prod.getProductName(),prod.getPrice(),prod.getCategory(),prod.getDescription()));
         }
         //---
-        mapProd.put("product",productList);
+        mapProd.put("products",productList);
         return mapProd;
     }
 }
