@@ -1,5 +1,6 @@
 package be.heh.ecproject.product.adapter.in.web;
 
+import be.heh.ecproject.product.adapter.out.persistence.AllProductUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

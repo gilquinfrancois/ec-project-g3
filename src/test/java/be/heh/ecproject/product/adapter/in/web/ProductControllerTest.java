@@ -1,5 +1,6 @@
 package be.heh.ecproject.product.adapter.in.web;
 
+import be.heh.ecproject.product.adapter.out.persistence.AllProductUseCase;
 import be.heh.ecproject.product.domain.Product;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -7,6 +8,7 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
@@ -14,9 +16,9 @@ import java.util.*;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
+@ActiveProfiles("dev")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
-
 public class ProductControllerTest
 {
     @LocalServerPort
@@ -51,8 +53,8 @@ public class ProductControllerTest
                 get("/products").
         then().
                 statusCode(200).
-                body("products[1].nameProduct", equalTo("Uniform Linen Charge")).
-                body("products.nameProduct", hasItems("Lentils - Green Le Puy", "Uniform Linen Charge", "Wine - Beringer Founders Estate"));
+                body("products[1].product_name", equalTo("Uniform Linen Charge")).
+                body("products.product_name", hasItems("Lentils - Green Le Puy", "Uniform Linen Charge", "Wine - Beringer Founders Estate"));
 
     }
 }

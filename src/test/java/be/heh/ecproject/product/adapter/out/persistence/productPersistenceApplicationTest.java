@@ -1,4 +1,5 @@
 package be.heh.ecproject.product.adapter.out.persistence;
+import be.heh.ecproject.product.domain.Product;
 import org.junit.ClassRule;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,6 @@ public class productPersistenceApplicationTest {
     @Autowired
     private ProductRepository productRepository;
 
-    /*@Container
-    public GenericContainer postgres = new GenericContainer(DockerImageName.parse("postgres:13"))
-            .withExposedPorts(5432,5432).withEnv("POSTGRES_PASSWORD","root");*/
-
-    @ClassRule
-
     @Test
     @Sql({"createTable.sql","ProductPersistenceTest.sql"})
     void getAllProducts(){
@@ -36,7 +31,7 @@ public class productPersistenceApplicationTest {
         Map<String, Object> map = new HashMap<>();
         ArrayList<Product> prod;
 
-        map = productPersistenceAdapter.getProduct();
+        map = productPersistenceAdapter.getProducts();
 
         prod = (ArrayList<Product>)map.get("products");
 
