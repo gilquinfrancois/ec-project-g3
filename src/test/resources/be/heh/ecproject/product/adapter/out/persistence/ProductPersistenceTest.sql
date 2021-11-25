@@ -1,0 +1,2 @@
+insert into products(id, product_name, price, category, description)  values (1, 'pain',2.5,'feculents','pain carré blanc');
+insert into products(id, product_name, price, category, description)  values (2, 'tomate',1.5,'fruits','grappe de tomates');

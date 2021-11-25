@@ -13,11 +13,11 @@ import java.util.UUID;
 public class Product {
 
     @Getter
-    private final Long id;
+    private final int id;
     @Getter
-    private final String productName;
+    private final String product_name;
     @Getter
-    private final int price;
+    private final double price;
     @Getter
     private final String category;
     @Getter

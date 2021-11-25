@@ -1,2 +1,0 @@
-insert into products(productName, price, category, description)  values ('pain',2.5,'feculents','pain carré blanc');
-insert into products(productName, price, category, description)  values ('tomate',0.5,'fruits','grappe de tomates');

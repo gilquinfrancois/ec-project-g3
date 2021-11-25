@@ -1,7 +1,8 @@
 package be.heh.ecproject.product.adapter.out.persistence;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,9 +10,12 @@ import java.util.List;
 import java.util.Map;
 
 @RequiredArgsConstructor
-public class productPersistenceAdapter implements AllProductUseCase{
+public class ProductPersistenceAdapter implements AllProductUseCase{
 
+    @Autowired
     private final ProductRepository productRepository;
+
+
 
     @Override
     public Map<String, Object> getProduct() {
@@ -19,9 +23,11 @@ public class productPersistenceAdapter implements AllProductUseCase{
         //mapper
         List<Product> productList = new ArrayList<>();
         Map<String,Object> mapProd = new HashMap<>();
+        Product product;
 
         for (ProductJpaEntity prod: productJpaList) {
-            productList.add(new Product(prod.getId(),prod.getProductName(),prod.getPrice(),prod.getCategory(),prod.getDescription()));
+            product = new Product(prod.getId(),prod.getProduct_name(),prod.getPrice(),prod.getCategory(),prod.getDescription());
+            productList.add(product);
         }
         //---
         mapProd.put("products",productList);

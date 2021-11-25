@@ -6,14 +6,17 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@Profile("prod")
+@Profile("dev")
 @Configuration
 @EnableJpaRepositories
-public class persistenceAdapterConfiguration {
+public class PersistenceAdapterConfiguration {
     @Autowired
     private ProductRepository productRepository;
+
     @Bean
-    AllProductUseCase getAllPersonUseCase(){
-        return new productPersistenceAdapter(productRepository);
+    AllProductUseCase getAllProductUseCase()
+    {
+        ProductPersistenceAdapter productPersistenceAdapter = new ProductPersistenceAdapter(productRepository);
+        return productPersistenceAdapter;
     }
 }
