@@ -25,7 +25,7 @@ public class productPersistenceApplicationTest {
     private ProductRepository productRepository;
 
     @Test
-    @Sql({"createTable.sql","ProductPersistenceTest.sql"})
+    @Sql({"productData.sql"})
     void getAllProducts(){
         ProductPersistenceAdapter productPersistenceAdapter = new ProductPersistenceAdapter(productRepository);
         Map<String, Object> map = new HashMap<>();
@@ -37,9 +37,9 @@ public class productPersistenceApplicationTest {
 
         System.out.println(prod.get(0).getProduct_name());
 
-        assertEquals("pain",prod.get(0).getProduct_name());
-        assertEquals("feculents",prod.get(0).getCategory());
-        assertEquals(2.5,prod.get(0).getPrice());
+        assertEquals("Lentils - Green Le Puy",prod.get(0).getProduct_name());
+        assertEquals("condiments",prod.get(0).getCategory());
+        assertEquals(35.77,prod.get(0).getPrice());
 
     }
 }
