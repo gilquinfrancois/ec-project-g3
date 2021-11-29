@@ -1,5 +1,5 @@
 create table products (
-                          id INT,
+                          id SERIAL,
                           product_name VARCHAR(50),
                           price DECIMAL(5,2),
                           category VARCHAR(10),
