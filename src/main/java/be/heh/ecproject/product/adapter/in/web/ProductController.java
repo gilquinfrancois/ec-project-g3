@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-@RequestMapping(path = "/api", produces = "application/json")
+@RequestMapping(path = "api", produces = "application/json")
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 
