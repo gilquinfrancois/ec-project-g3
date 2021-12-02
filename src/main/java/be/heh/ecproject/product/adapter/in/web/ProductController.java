@@ -22,4 +22,10 @@ public class ProductController
     {
         return allProductUseCase.getProducts();
     }
+
+    @GetMapping("/sorting")
+    public Map<String, Object> sortProducts(String value)
+    {
+        return  allProductUseCase.sortProducts(value);
+    }
 }
