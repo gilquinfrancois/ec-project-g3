@@ -86,7 +86,7 @@ public class ProductControllerTest
                 get("/sorting").
                 then().
                 statusCode(200).
-                body("products[1].product_name", equalTo("Wine - Beringer Founders Estate")).
+                body("products[2].product_name", equalTo("Wine - Beringer Founders Estate")).
                 body("products.product_name", hasItems("Lentils - Green Le Puy", "Uniform Linen Charge", "Wine - Beringer Founders Estate"));
 
     }
