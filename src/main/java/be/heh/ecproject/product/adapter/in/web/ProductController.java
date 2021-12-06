@@ -24,10 +24,4 @@ public class ProductController
         return allProductUseCase.getProductsWithName(search);
     }
 
-    @GetMapping("/sorting")
-    public Map<String, Object> sortProducts(String value)
-    {
-        return  allProductUseCase.sortProducts(value);
-    }
-
 }

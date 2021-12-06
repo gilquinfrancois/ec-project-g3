@@ -63,7 +63,7 @@ public class ProductControllerTest
 
     @ParameterizedTest
     @ValueSource(strings = "tomato")
-    void getProductWithName(String value) {
+    void getProductsWithName(String value) {
         Product product1 = new Product(1, "Tomato - Tricolor Cherry", 21.91, "viande", "sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod");
         Product product2 = new Product(2, "Tomatoes", 40.05, "condiments", "at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci");
         Product product3 = new Product(3, "Juice - Tomato, 48 Oz", 4.71, "condiments", "lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque");
