@@ -1,4 +1,4 @@
-create table products (
+create table if not exists products (
                           id SERIAL,
                           product_name VARCHAR(50),
                           price DECIMAL(5,2),

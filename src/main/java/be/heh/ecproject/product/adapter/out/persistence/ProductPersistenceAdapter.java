@@ -39,7 +39,7 @@ public class ProductPersistenceAdapter implements AllProductUseCase{
         Product product;
 
         for (ProductJpaEntity prod: productJpaList) {
-            if(prod.getProduct_name().contains(value)) {
+            if(prod.getProduct_name().toLowerCase().contains(value)) {
                 product = new Product(prod.getId(),prod.getProduct_name(),prod.getPrice(),prod.getCategory(),prod.getDescription());
                 productList.add(product);
             }
@@ -58,7 +58,7 @@ public class ProductPersistenceAdapter implements AllProductUseCase{
         Product product;
 
         for (ProductJpaEntity prod: productJpaList) {
-            if(prod.getCategory().equals(category)) {
+            if(prod.getCategory().toLowerCase().equals(category)) {
                 product = new Product(prod.getId(),prod.getProduct_name(),prod.getPrice(),prod.getCategory(),prod.getDescription());
                 productList.add(product);
             }
