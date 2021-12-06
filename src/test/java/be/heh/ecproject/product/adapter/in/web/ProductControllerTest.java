@@ -84,10 +84,40 @@ public class ProductControllerTest
                 port(port).
                 queryParam("productName",value).
         when().
-                get("/search").
+                get("/searchName").
         then().
                 statusCode(200).
                 body("products[1].product_name", equalTo("Tomatoes")).
                 body("products.product_name", hasItems("Tomato - Tricolor Cherry", "Tomatoes", "Juice - Tomato, 48 Oz"));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = "condiments")
+    void getProductsWithCategory(String category) {
+        Product product1 = new Product(1, "Lentils - Green Le Puy", 25.77, "condiments", "consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar");
+        Product product2 = new Product(2, "Tomatoes", 40.05, "condiments", "at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci");
+        Product product3 = new Product(3, "Wine - Beringer Founders Estate", 29.67, "condiments", "consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus");
+
+        List<Product> products = new ArrayList<>();
+        products.add(product1);
+        products.add(product2);
+        products.add(product3);
+
+        Map<String, Object> productMap = new LinkedHashMap<>();
+        productMap.put("products", products);
+
+        //Stub
+        Mockito.when(allProductUseCase.getProductsWithCategory(category)).thenReturn(productMap);
+
+        baseURI = "http://localhost/api";
+        given().
+                port(port).
+                queryParam("category",category).
+        when().
+                get("/searchCategory").
+        then().
+                statusCode(200).
+                body("products[1].product_name", equalTo("Tomatoes")).
+                body("products.product_name", hasItems("Lentils - Green Le Puy", "Tomatoes", "Wine - Beringer Founders Estate"));
     }
 }
