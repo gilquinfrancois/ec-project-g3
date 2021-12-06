@@ -49,5 +49,10 @@ public class ProductPersistenceAdapter implements AllProductUseCase{
         return mapProd;
     }
 
+    @Override
+    public Map<String, Object> getProductsWithCategory(String category) {
+        return null;
+    }
+
 
 }
