@@ -20,8 +20,9 @@ public class ProductController
     {
         return allProductUseCase.getProducts();
     }
+
+    @GetMapping("/search")
     public Map<String, Object> getProductsWithName(@RequestParam String search) {
         return allProductUseCase.getProductsWithName(search);
     }
-
 }

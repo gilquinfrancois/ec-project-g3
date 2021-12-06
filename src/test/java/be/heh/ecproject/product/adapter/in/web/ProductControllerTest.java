@@ -84,7 +84,7 @@ public class ProductControllerTest
                 port(port).
                 queryParam("search",value).
         when().
-                get("/products").
+                get("/search").
         then().
                 statusCode(200).
                 body("products[1].product_name", equalTo("Tomatoes")).
