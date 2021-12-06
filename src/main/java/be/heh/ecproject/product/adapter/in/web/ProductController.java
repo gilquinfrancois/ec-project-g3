@@ -22,7 +22,10 @@ public class ProductController
     }
 
     @GetMapping("/search")
-    public Map<String, Object> getProductsWithName(@RequestParam String search) {
-        return allProductUseCase.getProductsWithName(search);
+    public Map<String, Object> getProductsWithName(@RequestParam String productName) {
+        return allProductUseCase.getProductsWithName(productName);
+    }
+    public Map<String, Object> getProductsWithCategory(@RequestParam String category) {
+        return allProductUseCase.getProductsWithCategory(category);
     }
 }

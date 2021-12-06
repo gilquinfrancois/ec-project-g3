@@ -82,7 +82,7 @@ public class ProductControllerTest
         baseURI = "http://localhost/api";
         given().
                 port(port).
-                queryParam("search",value).
+                queryParam("productName",value).
         when().
                 get("/search").
         then().
