@@ -2,10 +2,7 @@ package be.heh.ecproject.product.adapter.in.web;
 
 import be.heh.ecproject.product.adapter.out.persistence.AllProductUseCase;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -17,9 +14,20 @@ import java.util.Map;
 public class ProductController
 {
     private final AllProductUseCase allProductUseCase;
+
     @GetMapping("/products")
-        public Map<String, Object> getProducts()
+    public Map<String, Object> getProducts()
     {
         return allProductUseCase.getProducts();
+    }
+
+    @GetMapping("/searchName")
+    public Map<String, Object> getProductsWithName(@RequestParam String productName) {
+        return allProductUseCase.getProductsWithName(productName);
+    }
+
+    @GetMapping("/searchCategory")
+    public Map<String, Object> getProductsWithCategory(@RequestParam String category) {
+        return allProductUseCase.getProductsWithCategory(category);
     }
 }

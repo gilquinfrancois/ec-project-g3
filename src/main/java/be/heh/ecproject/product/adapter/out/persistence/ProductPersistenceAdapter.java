@@ -5,10 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RequiredArgsConstructor
 public class ProductPersistenceAdapter implements AllProductUseCase{
@@ -32,4 +29,44 @@ public class ProductPersistenceAdapter implements AllProductUseCase{
         mapProd.put("products",productList);
         return mapProd;
     }
+
+    @Override
+    public Map<String, Object> getProductsWithName(String value) {
+        List<ProductJpaEntity> productJpaList = productRepository.findAll();
+        //mapper
+        List<Product> productList = new ArrayList<>();
+        Map<String,Object> mapProd = new HashMap<>();
+        Product product;
+
+        for (ProductJpaEntity prod: productJpaList) {
+            if(prod.getProduct_name().toLowerCase().contains(value.toLowerCase())) {
+                product = new Product(prod.getId(),prod.getProduct_name(),prod.getPrice(),prod.getCategory(),prod.getDescription());
+                productList.add(product);
+            }
+        }
+        //---
+        mapProd.put("products",productList);
+        return mapProd;
+    }
+
+    @Override
+    public Map<String, Object> getProductsWithCategory(String category) {
+        List<ProductJpaEntity> productJpaList = productRepository.findAll();
+        //mapper
+        List<Product> productList = new ArrayList<>();
+        Map<String,Object> mapProd = new HashMap<>();
+        Product product;
+
+        for (ProductJpaEntity prod: productJpaList) {
+            if(prod.getCategory().toLowerCase().equals(category.toLowerCase())) {
+                product = new Product(prod.getId(),prod.getProduct_name(),prod.getPrice(),prod.getCategory(),prod.getDescription());
+                productList.add(product);
+            }
+        }
+        //---
+        mapProd.put("products",productList);
+        return mapProd;
+    }
+
+
 }

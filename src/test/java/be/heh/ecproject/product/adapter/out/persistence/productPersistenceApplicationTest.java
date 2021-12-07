@@ -40,6 +40,5 @@ public class productPersistenceApplicationTest {
         assertEquals("Lentils - Green Le Puy",prod.get(0).getProduct_name());
         assertEquals("condiments",prod.get(0).getCategory());
         assertEquals(35.77,prod.get(0).getPrice());
-
     }
 }
