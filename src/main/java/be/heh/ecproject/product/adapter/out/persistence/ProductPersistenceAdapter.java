@@ -68,5 +68,23 @@ public class ProductPersistenceAdapter implements AllProductUseCase{
         return mapProd;
     }
 
+    @Override
+    public Map<String, Object> getProductDetail(String productName) {
+        List<ProductJpaEntity> productJpaList = productRepository.findAll();
+        //mapper
+        List<Product> productList = new ArrayList<>();
+        Map<String,Object> mapProd = new HashMap<>();
+        Product product;
+
+        for (ProductJpaEntity prod: productJpaList) {
+            if(prod.getProduct_name().equalsIgnoreCase(productName)) {
+                product = new Product(prod.getId(),prod.getProduct_name(),prod.getPrice(),prod.getCategory(),prod.getDescription());
+                productList.add(product);
+            }
+        }
+        //---
+        mapProd.put("products",productList);
+        return mapProd;
+    }
 
 }

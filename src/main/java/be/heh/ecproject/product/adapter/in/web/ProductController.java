@@ -30,4 +30,9 @@ public class ProductController
     public Map<String, Object> getProductsWithCategory(@RequestParam String category) {
         return allProductUseCase.getProductsWithCategory(category);
     }
+
+    @GetMapping("/productDetail")
+    public Map<String, Object> getProductDetail(@RequestParam String productName) {
+        return allProductUseCase.getProductDetail(productName);
+    }
 }
