@@ -122,8 +122,8 @@ public class ProductControllerTest
     }
 
     @ParameterizedTest
-    @ValueSource(strings = "Tomato - Tricolor Cherry")
-    void getProductDetail(String productName) {
+    @ValueSource(ints = 0)
+    void getProductDetail(int id) {
         Product product = new Product(1, "Tomato - Tricolor Cherry", 21.91, "viande", "sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod");
 
         List<Product> products = new ArrayList<>();
@@ -133,14 +133,14 @@ public class ProductControllerTest
         productMap.put("products", products);
 
         //Stub
-        Mockito.when(allProductUseCase.getProductsWithName(productName)).thenReturn(productMap);
+        Mockito.when(allProductUseCase.getProductDetail(id)).thenReturn(productMap);
 
         baseURI = "http://localhost/api";
         given().
                 port(port).
-                queryParam("productName",productName).
+                queryParam("productId",id).
         when().
-                get("/searchName").
+                get("/productDetail").
         then().
                 statusCode(200).
                 body("products[0].product_name", equalTo("Tomato - Tricolor Cherry")).
