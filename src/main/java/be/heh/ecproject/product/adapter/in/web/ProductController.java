@@ -32,7 +32,7 @@ public class ProductController
     }
 
     @GetMapping("/productDetail")
-    public Map<String, Object> getProductDetail(@RequestParam String productName) {
-        return allProductUseCase.getProductDetail(productName);
+    public Map<Integer, Object> getProductDetail(@RequestParam int productId) {
+        return allProductUseCase.getProductDetail(productId);
     }
 }
