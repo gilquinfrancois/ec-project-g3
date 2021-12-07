@@ -120,4 +120,32 @@ public class ProductControllerTest
                 body("products[1].product_name", equalTo("Tomatoes")).
                 body("products.product_name", hasItems("Lentils - Green Le Puy", "Tomatoes", "Wine - Beringer Founders Estate"));
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = 0)
+    void getProductDetail(int id) {
+        Product product = new Product(1, "Tomato - Tricolor Cherry", 21.91, "viande", "sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod");
+
+        List<Product> products = new ArrayList<>();
+        products.add(product);
+
+        Map<String, Object> productMap = new LinkedHashMap<>();
+        productMap.put("products", products);
+
+        //Stub
+        Mockito.when(allProductUseCase.getProductDetail(id)).thenReturn(productMap);
+
+        baseURI = "http://localhost/api";
+        given().
+                port(port).
+                queryParam("productId",id).
+        when().
+                get("/productDetail").
+        then().
+                statusCode(200).
+                body("products[0].product_name", equalTo("Tomato - Tricolor Cherry")).
+                body("products[0].price", equalTo(21.91F)).
+                body("products[0].category", equalTo("viande")).
+                body("products[0].description", equalTo("sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod"));
+    }
 }
