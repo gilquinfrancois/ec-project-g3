@@ -1,17 +1,18 @@
 package be.heh.ecproject.product.domain;
 
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import java.lang.reflect.Array;
-
 @RequiredArgsConstructor
-public class Command {
+public class Command
+{
 
     @Getter
-    private final int idCommand;
+    private final int id;
     @Getter
     private final int idUser;
     @Getter
-    private final Array idProduct;
+    private final int[] idProduct;
+
 }
