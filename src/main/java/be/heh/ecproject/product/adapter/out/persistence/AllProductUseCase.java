@@ -10,6 +10,7 @@ public interface AllProductUseCase {
     Map<String, Object> getProductsWithCategory(String category);
 
     Map<String, Object> getProductDetail(int productId);
+
 }
 
 

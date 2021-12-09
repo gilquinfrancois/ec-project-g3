@@ -1,8 +1,12 @@
 package be.heh.ecproject.product.adapter.out.persistence;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "COMMAND_DATA")
@@ -14,12 +18,10 @@ public class CommandJpaEntity {
     private int commandId;
 
     @Column(name = "userId")
-    private String userId;
+    private int userId;
 
+    @Type(type="type-array")
     @Column(name = "productId")
-    private String productId;
-
-    @Column(name = "email")
-    private String email;
+    private List<Integer> productId;
 
 }
