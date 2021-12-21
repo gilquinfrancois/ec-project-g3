@@ -1,4 +1,4 @@
-create table IF NOT EXISTS USER_DATA (
+create table USER_DATA (
 	id INT,
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
