@@ -44,6 +44,7 @@ dependencies {
     runtimeOnly 'org.webjars:webjars-locator:0.38'
 
     implementation "org.flywaydb:flyway-core:8.0.2"
+    implementation "javax.xml.bind:jaxb-api:2.3.0"
 }
 
 test {
