@@ -16,7 +16,7 @@ public class CommandPersistenceAdapter implements AllCommandUseCase{
     private final CommandRepository commandRepository;
 
     @Override
-    public Map<String, Object> getCommands() {
+    public Map<String, Object> getCommandDetail(int commandId) {
         List<CommandJpaEntity> commandJpaList = commandRepository.findAll();
         //mapper
         List<Command> commandList = new ArrayList<>();
@@ -24,8 +24,10 @@ public class CommandPersistenceAdapter implements AllCommandUseCase{
         Command command;
 
         for (CommandJpaEntity com: commandJpaList) {
-            command = new Command(com.getCommandId(),com.getUserId(),com.getProductId());
-            commandList.add(command);
+            if(com.getCommandId() == commandId) {
+                command = new Command(com.getCommandId(), com.getUserId(), com.getProductId());
+                commandList.add(command);
+            }
         }
         //---
         mapCommand.put("COMMAND_DATA",commandJpaList);

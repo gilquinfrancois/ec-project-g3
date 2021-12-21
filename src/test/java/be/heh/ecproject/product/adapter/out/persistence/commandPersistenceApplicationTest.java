@@ -25,14 +25,14 @@ public class commandPersistenceApplicationTest {
     @Autowired
     private CommandRepository commandRepository;
 
-    @Test
-    @Sql({"COMMAND_DATA.sql","USER_DATA.sql"})
-    void getAllCommands() {
+    @ParameterizedTest
+    @ValueSource(ints = 1)
+    void getCommandDetail(int id) {
         CommandPersistenceAdapter commandPersistenceAdapter = new CommandPersistenceAdapter(commandRepository);
         Map<String, Object> map = new HashMap<>();
         ArrayList<Command> commands;
 
-        map = commandPersistenceAdapter.getCommands();
+        map = commandPersistenceAdapter.getCommandDetail(id);
         commands = (ArrayList<Command>) map.get("COMMAND_DATA");
 
         System.out.println(commands.get(0).getIdProduct());
