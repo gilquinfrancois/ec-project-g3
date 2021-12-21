@@ -1,4 +1,4 @@
-create table COMMAND_DATA (
+create table IF NOT EXISTS COMMAND_DATA (
                               commandId INT primary key,
                               userId INT references USER_DATA(id),
                               productId INT[] references productsData(id)

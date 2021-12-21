@@ -87,5 +87,4 @@ public class ProductPersistenceAdapter implements AllProductUseCase{
         return mapProd;
     }
 
-
 }
