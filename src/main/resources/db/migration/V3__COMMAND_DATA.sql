@@ -1,7 +1,7 @@
 create table IF NOT EXISTS COMMAND_DATA (
                               commandId INT primary key,
-                              userId INT,
-                              productId INT[]
+                              userId INT references USER_DATA(id),
+                              productId INT[] references productsData(id)
 );
 
 INSERT INTO COMMAND_DATA(commandId, userId, productId) values (1,1,ARRAY[25,65,95,5]);
