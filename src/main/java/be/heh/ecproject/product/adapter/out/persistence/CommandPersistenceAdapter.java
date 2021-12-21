@@ -28,7 +28,7 @@ public class CommandPersistenceAdapter implements AllCommandUseCase{
             commandList.add(command);
         }
         //---
-        mapCommand.put("command",commandJpaList);
+        mapCommand.put("COMMAND_DATA",commandJpaList);
         return mapCommand;
     }
 

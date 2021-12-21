@@ -33,11 +33,16 @@ public class commandPersistenceApplicationTest {
         ArrayList<Command> commands;
 
         map = commandPersistenceAdapter.getCommands();
-        commands = (ArrayList<Command>) map.get("commands");
+        commands = (ArrayList<Command>) map.get("COMMAND_DATA");
 
         System.out.println(commands.get(0).getIdProduct());
 
         assertEquals("{25,65,95,5}", commands.get(0).getIdProduct());
         assertEquals(1, commands.get(0).getIdUser());
+    }
+
+    @Test
+    void test() {
+        System.out.println("Hello");
     }
 }

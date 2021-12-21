@@ -1,8 +1,6 @@
 package be.heh.ecproject;
 
-import be.heh.ecproject.product.adapter.out.persistence.AllProductUseCase;
-import be.heh.ecproject.product.adapter.out.persistence.ProductPersistenceAdapter;
-import be.heh.ecproject.product.adapter.out.persistence.ProductRepository;
+import be.heh.ecproject.product.adapter.out.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,4 +17,9 @@ public class PersistenceAdapterConfiguration
     {
         return new ProductPersistenceAdapter(productRepository);
     }
+
+    @Autowired
+    private CommandRepository commandRepository;
+    @Bean
+    AllCommandUseCase getAllCommandUseCase() { return new CommandPersistenceAdapter(commandRepository); }
 }
